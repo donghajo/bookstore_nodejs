@@ -1,0 +1,1 @@
+exports.signup = 'insert into db_bookstore (id, pw, name) value(?,?,?)';
