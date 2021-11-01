@@ -5,10 +5,12 @@ exports.getSignIn = async(req, res) =>{
     return res.render('signIn')
 }
 exports.signIn = async(req, res) =>{
-    const data = [req.body.id, req.body.pw]
+    const {id, pw} = req.body
     try{
-        let user = await signService.signIn(data)
+        console.log(id, pw);
+        let user = await signService.signIn(id, pw)
         req.session.id = user[0].id; 
+        
         if(user[0].id == id && user[0].pw == pw){
             //signIn success
             return res.send('<script type="text/javascript">alert("환영합니다!"); location.href="/main";</script> session:${req.session.id}');
@@ -37,6 +39,6 @@ exports.signUp = async(req, res) =>{
     }
 }
 
-exports.getMain = async(res) =>{
+exports.getMain = async(req, res) =>{
     return res.render('main');
 }

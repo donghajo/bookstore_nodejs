@@ -11,10 +11,10 @@ exports.signUp = async (req) => {
     }
 }
 
-exports.signIn = async (req) => {
+exports.signIn = async (id, pw) => {
     try{
-        let user = await database.query(signQuery.signIn, req)
-        console.log(user[0]);
+        let user = await database.query(signQuery.signIn, [id, pw])
+        console.log('service clear');
         return user[0]
     }catch(err){
         throw Error(err)
