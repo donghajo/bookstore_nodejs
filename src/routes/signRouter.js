@@ -1,15 +1,17 @@
 var router = require('express').Router();
+const app = require('../../app');
 const signController = require('../controllers/signController');
 
-
-//login page
-router.get('/login', signController.getLogin);
-//login
-router.post('/', signController.login);
+//signIn page
+router.get('/signIn', signController.getSignIn);
+//signIn 
+router.post('/', signController.signIn);
 
 //signup page
-router.get('/signup', signController.getSignup);
+router.get('/signUp', signController.getSignUp);
 //signup
-router.post('/signup', signController.signup);
+router.post('/signUp', signController.signUp);
+
+router.get('/main', signController.getMain);
 
 module.exports = router;
