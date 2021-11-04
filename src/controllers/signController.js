@@ -33,7 +33,7 @@ exports.signOut = async(req, res) =>{
                     return;
                 }
                 console.log('세션 삭제 성공');
-                res.redirect('/main');
+                res.redirect('/login');
             }
         );
     }else{
@@ -58,13 +58,12 @@ exports.signUp = async(req, res) =>{
     }
 }
 
-exports.getMain = async(req, res) =>{
-    return res.render('main');
-}
+
 
 exports.maintain = async(req, res) =>{
     try{
         let user = req.session.user_id
+        console.log("로그인정보 저장 : ",user );
         return res.render('signUp', {user:user})
     }catch(err){
         return res.status(500).json(err)

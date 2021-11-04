@@ -14,6 +14,11 @@
             <a href="/main">BookStore</a>
         </h1>
     </header>
+    <div>
+        <form action='/signOut' method='get'>
+            <button type='submit'>signOut</button>
+        </form>       
+    </div>
     <nav>
         <ul>
             <li><a href="/main">Home</a></li>
@@ -22,24 +27,36 @@
     </nav>
 
 
-    <div>
-        <form action='/signOut' method='post'>
-            <button type='submit'>signOut</button>
-        </form>       
-    </div>
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">번호</th>
-            <th scope="col">책 이름</th>
-            <th scope="col">출판사</th>
-            <th scope="col">저자</th>
-            <th scope="col">상세 내용</th>
-            <th scope="col">금액</th>
-            <th scope="col">재고량</th>
-          </tr>
-        </thead>
+
+    <table class="table" border="2">
+        <tr>
+          <th>번호</th>
+          <th>책 제목</th>
+          <th>재고량</th>
+          <th>가격</th>
+        </tr>
+        <%
+        for(var i = 0; i<rows.length; i++)
+        {
+        %>
+        <tr>
+          <td><%=i+1%></td>
+          <td><a href="/book/<%=rows[i].book_id%>"><%=rows[i].book_name%></a></td>
+          <td><%=rows[i].book_quantity%></td>
+          <td><%=rows[i].book_price%></td>
+        </tr>
+        <%
+        }
+        %>
+  
       </table>
+      
+      <input type="button" value="추가" onclick="movepage()">
+      <script type="text/javascript">
+          function movepage(){
+            location.href='/insert';
+          }
+      </script>
 
 </body>
 </html>

@@ -8,6 +8,7 @@ const session = require('express-session');
 // var usersRouter = require('./src/routes/users');
 
 var signRouter = require('./src/routes/signRouter');
+var bookRouter = require('./src/routes/bookRouter');
 var app = express();
 
 // view engine setup
@@ -27,6 +28,7 @@ app.use(session({
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/', signRouter);
+app.use('/', bookRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

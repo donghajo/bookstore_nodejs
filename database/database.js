@@ -5,7 +5,7 @@ const connection = mysql.createPool({
     user : 'root',
     port : 3306,
     password : '980605',
-    database : 'bookStore'
+    database : 'db_bookstore'
 });
 
 
