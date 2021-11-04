@@ -1,0 +1,28 @@
+*{margin: 0; padding: 0;}
+
+body{
+    padding: 30px;
+}
+
+header{padding: 5px}
+
+nav{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+nav ul{
+    list-style:none;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+nav ul li{
+    display: inline;
+    letter-spacing: .3em;
+    margin-left: 2em;
+}
+nav ul li a{
+    text-decoration: none;
+    color: black;
+    line-height:3em;
+}

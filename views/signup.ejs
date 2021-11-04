@@ -4,24 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>Document</title>
 </head>
-<body>
+<body  class="text-center" style="margin-top: 20px; margin-left: 20px; margin-right: 20px;" >
     <div>
         <form action='/signUp' method="post">
 
-            <div class="inputId">
-                <input type="text" name='id' placeholder="id">
-            </div>
-            <div class="inputPw">
-                <input type="text" name="pw" placeholder="password">
-            </div>
-            <div class="inputName">
-                <input type="text" name="name" placeholder="name">
+            <div>
+                <input type="text" name='user_id' placeholder="id">
             </div>
             <div>
-                <button type="submit">
-                    signup
+                <input type="text" name="user_pw" placeholder="password">
+            </div>
+            <div>
+                <input type="text" name="user_name" placeholder="name">
+            </div>
+            <div>
+                <button class="btn btn-outline-dark" type="submit">
+                    signUp
                 </button>
             </div>
         </form>

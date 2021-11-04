@@ -12,6 +12,13 @@ router.get('/signUp', signController.getSignUp);
 //signup
 router.post('/signUp', signController.signUp);
 
+//signOut
+router.post('/signOut', signController.signOut);
+
+//main page
 router.get('/main', signController.getMain);
+
+//유지
+router.get('/signIn', signController.maintain);
 
 module.exports = router;
