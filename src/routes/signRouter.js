@@ -16,7 +16,5 @@ router.post('/signUp', signController.signUp);
 router.post('/signOut', signController.signOut);
 
 
-//유지
-router.get('/signIn', signController.maintain);
 
 module.exports = router;

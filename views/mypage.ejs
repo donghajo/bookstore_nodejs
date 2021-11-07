@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>MyPage</title>
+</head>
+<body>
+    <body class="text-center" style="margin-top: 30px; margin-left: 50px; margin-right: 50px;">
+        <div class="px-4 py-5 my-5 text-center">
+          <header>
+            <h1 class="display-5 fw-bold"><%=sess%>님의 마이페이지</h1>
+          </header>
+          
+          
+          <h1 class="display-5 fw-bold">배송지</h1>
+          <div class="col-lg-10 mx-auto">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">번호</th>
+                  <th scope="col">우편번호</th>
+                  <th scope="col">주소</th>
+                  <th scope="col">상세주소</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%
+                for(var i = 0; i<addr_info.length; i++)
+                {
+                %>
+                <tr>
+                  <td><%=i+1%></td>
+                  <td><%=addr_info[i].zipCode%></a></td>
+                  <td><%=addr_info[i].address_default%></td>
+                  <td><%=addr_info[i].address_detail%></td>
+                </tr>
+                <%
+                }
+                %>
+              </tbody> 
+            </table>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+              <button type="button" class="btn btn-dark btn-lg px-4 gap-3"
+                onclick="location.href='/myPage/address/insert/<%=sess%>'">추가</button>
+            </div>
+          </div>
+        </div>
+      
+        <div class="px-4 py-5 my-5 text-center">
+          <h1 class="display-5 fw-bold">카드</h1>
+          <div class="col-lg-10 mx-auto">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">번호</th>
+                  <th scope="col">카드 번호</th>
+                  <th scope="col">카드 종류</th>
+                  <th scope="col">카드 유효기간</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%
+                for(var i = 0; i<card_info.length; i++)
+                {
+                %>
+                <tr>
+                  <td><%=i+1%></td>
+                  <td><%=card_info[i].card_id%></a></td>
+                  <td><%=card_info[i].card_kind%></td>
+                  <td><%=card_info[i].card_expiredate%></td>
+                </tr>
+                <%
+                }
+                %>
+              </tbody>
+            </table>
+      
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+              <button type="submit" class="btn btn-dark btn-lg px-4 gap-3"
+                onclick="location.href='/myPage/card/insert/<%=sess%>'">추가</button>
+            </div>
+          </div>
+        </div>
+</body>
+</html>
