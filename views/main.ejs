@@ -9,22 +9,25 @@
     <title>Document</title>
 </head>
 <body class="text-center" style="margin-top: 20px; margin-left: 20px; margin-right: 20px;" >
+    
     <header>
         <h1>
             <a href="/main">BookStore</a>
         </h1>
     </header>
-    <div>
-        <form action='/signOut' method='get'>
-            <button type='submit'>signOut</button>
-        </form>       
+    <div class="rows">
+        <div>
+            <form action='/myPage/<%=sess%>' method='get'>
+                <button class="btn btn-outline-dark" type='submit'>MyPage</button>
+            </form>       
+        </div>
+        <div>
+            <form action='/signOut' method='get'>
+                <button class="btn btn-outline-dark" type='submit'>signOut</button>
+            </form>       
+        </div>
     </div>
-    <nav>
-        <ul>
-            <li><a href="/main">Home</a></li>
-            <li></li>
-        </ul>
-    </nav>
+    
 
 
 
@@ -51,12 +54,12 @@
   
       </table>
       
-      <input type="button" value="추가" onclick="movepage()">
+      <!-- <input type="button" value="추가" onclick="movepage()">
       <script type="text/javascript">
           function movepage(){
             location.href='/insert';
           }
-      </script>
+      </script> -->
 
 </body>
 </html>
