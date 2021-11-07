@@ -3,7 +3,6 @@ const database = require('../../database/database');
 
 exports.signUp = async (req) => {
     try {
-        console.log("service:", req);
         database.query(signQuery.signUp, req)
         return
     } catch(err){
@@ -13,9 +12,7 @@ exports.signUp = async (req) => {
 
 exports.signIn = async (user_id, user_pw) => {
     try{
-        console.log("pass");
         let user = await database.query(signQuery.signIn, [user_id, user_pw])
-       
         return user[0]
     }catch(err){
         throw Error(err)

@@ -3,9 +3,7 @@ const database = require('../../database/database');
 
 exports.cardInfo = async(req)=>{
     try{
-        console.log("cardServIn : ", req);
         let info = await database.query(mypageQuery.cardList, req);
-        console.log("pass");
         return info[0];
     }catch{
         throw Error(error);
@@ -14,9 +12,7 @@ exports.cardInfo = async(req)=>{
 
 exports.addressInfo = async(req)=>{
     try{
-        console.log("addrServIn : ", req);
         let info = await database.query(mypageQuery.addrList, req);
-        console.log("pass");
         return info[0];
     }catch{
         throw Error(error);

@@ -6,14 +6,13 @@ exports.getSignIn = async(req, res) =>{
 exports.signIn = async(req, res) =>{
     const {user_id, user_pw} = req.body
     try{
-        let user = await signService.signIn(user_id, user_pw)
+        const user = await signService.signIn(user_id, user_pw)
         req.session.user_id = user[0].user_id; 
         req.session.save(function(){
             res.redirect('/main');
         })
     }catch(err){
         res.send('<script type="text/javascript">alert("아이디 또는 비밀번호를 확인해주세요"); location.href="/signIn";</script>');
-        // return res.status(500).json(err);
     }
 }
 
@@ -33,9 +32,9 @@ exports.getSignUp = async(req, res) =>{
     return res.render('signUp')
 }
 exports.signUp = async(req, res) =>{
-    const data = [req.body.user_id, req.body.user_pw, req.body.user_name]
+    const {user_id, user_pw, user_name} = req.body
     try{
-        signService.signUp(data)
+        signService.signUp([user_id, user_pw, user_name])
         return res.redirect('/signIn')
     }catch(err){
         res.send('<script type="text/javascript">alert("이미 사용중인 아이디 입니다."); document.location.href="/signUp";</script>')

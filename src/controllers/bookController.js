@@ -29,7 +29,6 @@ exports.getDetail = async(req, res) =>{
     const id = req.params.book_id;
     try{
         const rows = await bookService.getDetail([id]);
-        console.log(rows);
         return res.render('bookDetail', {rows:rows[0]});
     }catch(err){
         return res.status(500).json(err);

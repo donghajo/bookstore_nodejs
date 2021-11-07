@@ -2,10 +2,9 @@ const mypageService = require('../services/mypageService');
 
 exports.getMypage = async(req, res) =>{
     const { user_user_id } = req.params
-        console.log(user_user_id);
     try {
-        let card = await mypageService.cardInfo(user_user_id);
-        let address = await mypageService.addressInfo(user_user_id);
+        const card = await mypageService.cardInfo(user_user_id);
+        const address = await mypageService.addressInfo(user_user_id);
         return res.render('mypage', {
             card :card,
             address :address,
@@ -17,10 +16,11 @@ exports.getMypage = async(req, res) =>{
 }
 
 exports.cardInsert =  async(req, res) =>{
-      const data = [req.body.card_id, req.body.card_kind, req.body.card_expiredate, req.params.user_user_id ];
+      const {card_id, card_kind, card_expiredate}  = req.body;
+      const {user_user_id} = req.params;
     try{
-        mypageService.insertCard(data);
-        res.redirect('/myPage/'+req.user_user_id);
+        mypageService.insertCard([card_id, card_kind, card_expiredate, user_user_id]);
+        res.redirect('/myPage/'+user_user_id);
     }catch(err){
         return res.status(500).json(err);
     }
@@ -32,11 +32,13 @@ exports.getCardInsert =  async(req, res) =>{
     });
 }
 
+
 exports.addressInsert =  async(req, res) =>{
-    const data = [req.body.zipCode, req.body.address_default, req.body.address_detail, req.params.user_user_id];
+    const {zipCode, address_default, address_detail} = req.body;
+    const {user_user_id} = req.params;
     try{
-        mypageService.insertAddress(data);
-        res.redirect('/myPage/'+req.params.user_user_id);
+        mypageService.insertAddress([zipCode, address_default, address_detail, user_user_id]);
+        res.redirect('/myPage/'+user_user_id);
     }catch(err){
         return res.status(500).json(err);
     }
