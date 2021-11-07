@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="text-center" style="margin-top: 30px; margin-left: 50px; margin-right: 50px;">
+    <div class="px-4 py-5 my-5 text-center">
+      <header>
+        <h1 class="display-5 fw-bold"><%=sess%>님의 장바구니</h1>
+      </header>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="submit" class="btn btn-dark btn-lg px-4 gap-3"
+          onclick="location.href='/main'">메인페이지</button>
+      </div>          
+      <h1 class="display-5 fw-bold">카트</h1>
+      <div class="col-lg-10 mx-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">번호</th>
+              <th scope="col">책 이름</th>
+              <th scope="col">수량</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+          
+          </tbody> 
+        </table>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <button type="button" class="btn btn-dark btn-lg px-4 gap-3">주문</button>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

@@ -11,12 +11,9 @@
     <body class="text-center" style="margin-top: 30px; margin-left: 50px; margin-right: 50px;">
         <div class="px-4 py-5 my-5 text-center">
           <header>
-            <h1 class="display-5 fw-bold"><%=sess%>님의 마이페이지</h1>
+            <h1 class="display-5 fw-bold"><%=session%>님의 마이페이지</h1>
           </header>
-          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button type="submit" class="btn btn-dark btn-lg px-4 gap-3"
-              onclick="location.href='/main'">메인페이지</button>
-          </div>          
+                   
           <h1 class="display-5 fw-bold">배송지</h1>
           <div class="col-lg-10 mx-auto">
             <table class="table">
@@ -30,14 +27,14 @@
               </thead>
               <tbody>
                 <%
-                for(var i = 0; i<addr_info.length; i++)
+                for(var i = 0; i<address.length; i++)
                 {
                 %>
                 <tr>
                   <td><%=i+1%></td>
-                  <td><%=addr_info[i].zipCode%></a></td>
-                  <td><%=addr_info[i].address_default%></td>
-                  <td><%=addr_info[i].address_detail%></td>
+                  <td><%=address[i].zipCode%></a></td>
+                  <td><%=address[i].address_default%></td>
+                  <td><%=address[i].address_detail%></td>
                 </tr>
                 <%
                 }
@@ -46,7 +43,7 @@
             </table>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
               <button type="button" class="btn btn-dark btn-lg px-4 gap-3"
-                onclick="location.href='/myPage/address/insert/<%=sess%>'">추가</button>
+                onclick="location.href='/myPage/address/insert/<%=session%>'">추가</button>
             </div>
           </div>
         </div>
@@ -65,14 +62,14 @@
               </thead>
               <tbody>
                 <%
-                for(var i = 0; i<card_info.length; i++)
+                for(var i = 0; i<card.length; i++)
                 {
                 %>
                 <tr>
                   <td><%=i+1%></td>
-                  <td><%=card_info[i].card_id%></a></td>
-                  <td><%=card_info[i].card_kind%></td>
-                  <td><%=card_info[i].card_expiredate%></td>
+                  <td><%=card[i].card_id%></a></td>
+                  <td><%=card[i].card_kind%></td>
+                  <td><%=card[i].card_expiredate%></td>
                 </tr>
                 <%
                 }
@@ -82,9 +79,14 @@
       
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
               <button type="submit" class="btn btn-dark btn-lg px-4 gap-3"
-                onclick="location.href='/myPage/card/insert/<%=sess%>'">추가</button>
+                onclick="location.href='/myPage/card/insert/<%=session%>'">추가</button>
             </div>
           </div>
+
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button type="submit" class="btn btn-dark btn-lg px-4 gap-3"
+              onclick="location.href='/main'">돌아가기</button>
+          </div> 
         </div>
 </body>
 </html>

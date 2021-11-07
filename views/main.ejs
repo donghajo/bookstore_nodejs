@@ -12,18 +12,18 @@
     
     <header>
         <h1>
-            <a href="/main">BookStore</a>
+            BookStore
         </h1>
       
     </header>
     <div class="rows">
         <div class="col">
-            <form action='/myPage/<%=sess%>' method='get'>
+            <form action='/myPage/<%=session%>' method='get' >
                 <button class="btn btn-outline-dark" type='submit'>MyPage</button>
             </form>       
         </div>
         <div>
-            <form action='/signOut' method='get'>
+            <form class="form-inline" action='/signOut' method='get'>
                 <button class="btn btn-outline-dark" type='submit'>signOut</button>
             </form>       
         </div>

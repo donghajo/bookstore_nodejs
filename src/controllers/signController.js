@@ -19,19 +19,11 @@ exports.signIn = async(req, res) =>{
 
 exports.signOut = async(req, res) =>{
     if(req.session){
-        console.log('로그아웃 처리');
-        req.session.destroy(
-            function(err){
-                if(err){
-                    console.log('세션 삭제시 에러');
-                    return;
-                }
-                console.log('세션 삭제 성공');
-                res.redirect('/signIn');
-            }
-        );
+        req.session.destroy(function(){
+            res.redirect('/signIn');
+        });
     }else{
-        console.log('로그인 안 되어 있음');
+        console.log('로그인 X');
         res.redirect('/signin');
     }
 }
@@ -42,7 +34,6 @@ exports.getSignUp = async(req, res) =>{
 }
 exports.signUp = async(req, res) =>{
     const data = [req.body.user_id, req.body.user_pw, req.body.user_name]
-    console.log("controller: ", data)
     try{
         signService.signUp(data)
         return res.redirect('/signIn')

@@ -8,7 +8,7 @@ exports.getMain = async(req, res) =>{
         console.log("getMain con out : ",rows);
         return res.render('main', {
             rows:rows,
-            sess:req.session.user_id
+            session:req.session.user_id
         });
     }catch(err){
         return res.status(500).json(err);
