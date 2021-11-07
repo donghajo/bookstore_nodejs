@@ -2,10 +2,7 @@ const bookService = require('../services/bookService');
 
 exports.getMain = async(req, res) =>{
     try{
-        console.log('getMain con in');
-        console.log(req.session);
         const rows = await bookService.getMain();
-        console.log("getMain con out : ",rows);
         return res.render('main', {
             rows:rows,
             session:req.session.user_id
