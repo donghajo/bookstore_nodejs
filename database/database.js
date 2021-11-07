@@ -2,12 +2,10 @@ const mysql = require('mysql2/promise');
 
 const connection = mysql.createPool({
     host : 'localhost',
-    user : 'root',
     port : 3306,
+    user : 'root',
     password : '980605',
-    database : 'db_bookstore'
+    database : 'bookstore'
 });
 
-
 module.exports = connection;
-
