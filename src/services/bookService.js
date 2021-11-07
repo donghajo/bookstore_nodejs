@@ -4,7 +4,6 @@ const database = require('../../database/database');
 exports.getMain = async()=>{
     try{
         const rows = await database.query(bookQuery.getMain);
-        console.log("service : ", rows);
         return rows[0];
     }catch(err){
         throw Error(err);
