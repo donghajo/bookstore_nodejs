@@ -6,7 +6,6 @@ exports.getMypage = async(req, res) =>{
     try {
         let card_info = await mypageService.cardInfo(user_user_id);
         let addr_info = await mypageService.addressInfo(user_user_id);
-        console.log("pass");
         return res.render('mypage', {
             card_info:card_info,
             addr_info:addr_info,
@@ -18,10 +17,10 @@ exports.getMypage = async(req, res) =>{
 }
 
 exports.cardInsert =  async(req, res) =>{
-    const data = [req.body.card_id, req.body.card_kind, req.body.card_expiredate, req.params.user_user_id ];
+      const data = [req.body.card_id, req.body.card_kind, req.body.card_expiredate, req.params.user_user_id ];
     try{
         mypageService.insertCard(data);
-        res.redirect('/myPage/:user_user_id');
+        res.redirect('/myPage/'+req.user_user_id);
     }catch(err){
         return res.status(500).json(err);
     }
@@ -34,8 +33,16 @@ exports.getCardInsert =  async(req, res) =>{
 }
 
 exports.addressInsert =  async(req, res) =>{
-
+    const data = [req.body.zipCode, req.body.address_default, req.body.address_detail, req.params.user_user_id];
+    try{
+        mypageService.insertAddress(data);
+        res.redirect('/myPage/'+req.params.user_user_id);
+    }catch(err){
+        return res.status(500).json(err);
+    }
 }
 exports.getAddressInsert =  async(req, res) =>{
-    return res.render('insertAddress');
+    return res.render('insertAddress',{
+        sess:req.session.user_id
+    });
 }

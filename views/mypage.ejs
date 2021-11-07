@@ -8,14 +8,15 @@
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <title>MyPage</title>
 </head>
-<body>
     <body class="text-center" style="margin-top: 30px; margin-left: 50px; margin-right: 50px;">
         <div class="px-4 py-5 my-5 text-center">
           <header>
             <h1 class="display-5 fw-bold"><%=sess%>님의 마이페이지</h1>
           </header>
-          
-          
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button type="submit" class="btn btn-dark btn-lg px-4 gap-3"
+              onclick="location.href='/main'">메인페이지</button>
+          </div>          
           <h1 class="display-5 fw-bold">배송지</h1>
           <div class="col-lg-10 mx-auto">
             <table class="table">

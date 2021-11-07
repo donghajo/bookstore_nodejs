@@ -21,12 +21,3 @@ exports.signIn = async (user_id, user_pw) => {
         throw Error(err)
     }
 }
-
-exports.signOut = async(req, res)=>{
-    if(req.session.user){
-        req.session.destroy(function(err){
-            if(err) throw err;
-            res.render('signIn');
-        });
-    }
-}

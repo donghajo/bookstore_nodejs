@@ -8,8 +8,9 @@ exports.signIn = async(req, res) =>{
     try{
         let user = await signService.signIn(user_id, user_pw)
         req.session.user_id = user[0].user_id; 
-        console.log('session:',req.session.user_id);
-        return res.redirect('/main');
+        req.session.save(function(){
+            res.redirect('/main');
+        })
     }catch(err){
         res.send('<script type="text/javascript">alert("아이디 또는 비밀번호를 확인해주세요"); location.href="/signIn";</script>');
         // return res.status(500).json(err);
@@ -17,8 +18,22 @@ exports.signIn = async(req, res) =>{
 }
 
 exports.signOut = async(req, res) =>{
-    signService.signOut(req);
-    res.redirect('/signIn');
+    if(req.session){
+        console.log('로그아웃 처리');
+        req.session.destroy(
+            function(err){
+                if(err){
+                    console.log('세션 삭제시 에러');
+                    return;
+                }
+                console.log('세션 삭제 성공');
+                res.redirect('/signIn');
+            }
+        );
+    }else{
+        console.log('로그인 안 되어 있음');
+        res.redirect('/signin');
+    }
 }
 
 
@@ -36,4 +51,3 @@ exports.signUp = async(req, res) =>{
         return res.status(500).json(err)
     }
 }
-

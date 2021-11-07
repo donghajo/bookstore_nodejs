@@ -1,5 +1,4 @@
 var router = require('express').Router();
-const app = require('../../app');
 const signController = require('../controllers/signController');
 
 //signIn page
@@ -13,8 +12,7 @@ router.get('/signUp', signController.getSignUp);
 router.post('/signUp', signController.signUp);
 
 //signOut
-router.post('/signOut', signController.signOut);
-
+router.get('/signOut', signController.signOut);
 
 
 module.exports = router;

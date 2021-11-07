@@ -8,5 +8,5 @@ router.get('/myPage/card/insert/:user_user_id', mypageController.getCardInsert);
 router.post('/myPage/card/insert/:user_user_id', mypageController.cardInsert);
 
 router.get('/myPage/address/insert/:user_user_id', mypageController.getAddressInsert);
-router.post('/myPage/:user_user_id', mypageController.addressInsert);
+router.post('/myPage/address/insert/:user_user_id', mypageController.addressInsert);
 module.exports = router;
