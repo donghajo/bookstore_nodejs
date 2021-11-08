@@ -11,6 +11,8 @@ const FileStore = require('session-file-store')(session);
 var signRouter = require('./src/routes/signRouter');
 var bookRouter = require('./src/routes/bookRouter');
 var mypageRouter = require('./src/routes/mypageRouter');
+var orderRouter = require('./src/routes/orderRouter');
+var cartRouter = require('./src/routes/cartRouter');
 var app = express();
 
 // view engine setup
@@ -33,7 +35,8 @@ app.use(session({
 app.use('/', signRouter);
 app.use('/', bookRouter);
 app.use('/', mypageRouter);
-
+app.use('/', orderRouter);
+app.use('/', cartRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -36,3 +36,13 @@ exports.bookDelete = async(req) =>{
         throw Error(err);
     }
 }
+
+
+exports.bookUpdate = async(req) => {
+    try{
+        database.query(bookQuery.book_update, req);
+        return;
+    }catch(err){
+        throw Error(err);
+    }
+}

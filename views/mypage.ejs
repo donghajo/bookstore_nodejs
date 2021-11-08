@@ -23,6 +23,8 @@
                   <th scope="col">우편번호</th>
                   <th scope="col">주소</th>
                   <th scope="col">상세주소</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
@@ -35,6 +37,8 @@
                   <td><%=address[i].zipCode%></a></td>
                   <td><%=address[i].address_default%></td>
                   <td><%=address[i].address_detail%></td>
+                  <td><form action="/myPage/address/update/<%=session%>/<%=address[i].zipCode%>" method="get"><button type="submit" class="btn btn-dark ">수정</button></form></td>
+                  <td><form action="/myPage/address/delete/<%=session%>/<%=address[i].zipCode%>" method="post"><button type="submit" class="btn btn-dark ">삭제</button></form></td>
                 </tr>
                 <%
                 }
@@ -58,6 +62,8 @@
                   <th scope="col">카드 번호</th>
                   <th scope="col">카드 종류</th>
                   <th scope="col">카드 유효기간</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
@@ -70,6 +76,8 @@
                   <td><%=card[i].card_id%></a></td>
                   <td><%=card[i].card_kind%></td>
                   <td><%=card[i].card_expiredate%></td>
+                  <td><form action="/myPage/card/update/<%=session%>/<%=card[i].card_id%>" method="get"><button type="submit" class="btn btn-dark ">수정</button></form></td>
+                  <td><form action="/myPage/card/delete/<%=session%>/<%=card[i].card_id%>" method="post"><button type="submit" class="btn btn-dark ">삭제</button></form></td>
                 </tr>
                 <%
                 }
@@ -82,7 +90,8 @@
                 onclick="location.href='/myPage/card/insert/<%=session%>'">추가</button>
             </div>
           </div>
-
+          <br>
+          <br>
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <button type="submit" class="btn btn-dark btn-lg px-4 gap-3"
               onclick="location.href='/main'">돌아가기</button>

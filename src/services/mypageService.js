@@ -36,3 +36,39 @@ exports.insertCard = async(req)=>{
         throw Error(err);
     }
 }
+
+
+exports.deleteAddress = async(req)=>{
+    try{
+        database.query(mypageQuery.deleteAddress, req);
+        return;
+    }catch(err){
+        throw Error(err);
+    }
+}
+exports.deleteCard = async(req)=>{
+    try{
+        database.query(mypageQuery.deleteCard, req);
+        return;
+    }catch(err){
+        throw Error(err);
+    }
+}
+
+exports.updateCard = async(req)=>{
+    try{
+        database.query(mypageQuery.updateCard, req);
+        return;
+    }catch(err){
+        throw Error(err);
+    }
+}
+
+exports.updateAddress = async(req)=>{
+    try{
+        database.query(mypageQuery.updateAddress, req);
+        return;
+    }catch(err){
+        throw Error(err);
+    }
+}

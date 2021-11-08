@@ -8,59 +8,75 @@
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <title>Document</title>
 </head>
-<body class="text-center" style="margin-top: 20px; margin-left: 20px; margin-right: 20px;" >
+<body class="text-center" style="margin-top: 30px; margin-left: 50px; margin-right: 50px;" >
+    <div class="px-4 py-5 my-5 text-center">
+        <header>
+            <h1>
+                BookStore
+            </h1>
+          
+        </header>
+        <div class="rows">
+            <div class="col">
+                <form action='/myPage/<%=session%>' method='get' style="float:right ;" >
+                    <button class="btn btn-outline-dark" type='submit'>마이페이지</button>
+                </form>       
+            </div>
+            <div>
+                <form class="form-inline" action='/signOut' method='get' style="float:right" ;>
+                    <button class="btn btn-outline-dark" type='submit'>로그아웃</button>
+                </form>       
+            </div>
+            <div>
+                <form class="form-inline" action='/cart' method='get' style="float:right ;">
+                    <button class="btn btn-outline-dark" type='submit'>장바구니</button>
+                </form>       
+            </div>
+            <div>
+                <form class="form-inline" action='/orderList/<%=session%>' method='get' style="float:right ;">
+                    <button class="btn btn-outline-dark" type='submit'>주문내역</button>
+                </form>       
+            </div>
+        </div>
+        
     
-    <header>
-        <h1>
-            BookStore
-        </h1>
-      
-    </header>
-    <div class="rows">
-        <div class="col">
-            <form action='/myPage/<%=session%>' method='get' >
-                <button class="btn btn-outline-dark" type='submit'>MyPage</button>
-            </form>       
+        <div class="px-4 py-5 my-5 text-center">
+            <div class="col-lg-10 mx-auto">
+                <table class="table">
+                    <tr>
+                      <th scope="col">번호</th>
+                      <th scope="col">책 제목</th>
+                      <th scope="col">재고량</th>
+                      <th scope="col">가격</th>
+                    </tr>
+                    <%
+                    for(var i = 0; i<rows.length; i++)
+                    {
+                    %>
+                    <tr>
+                      <td><%=i+1%></td>
+                      <td><a href="/book/<%=rows[i].book_id%>"><%=rows[i].book_name%></a></td>
+                      <td><%=rows[i].book_quantity%></td>
+                      <td><%=rows[i].book_price%></td>
+                    </tr>
+                    <%
+                    }
+                    %>
+              
+                  </table>
+            </div>
+            
         </div>
-        <div>
-            <form class="form-inline" action='/signOut' method='get'>
-                <button class="btn btn-outline-dark" type='submit'>signOut</button>
-            </form>       
-        </div>
+        
+          
+          <input type="button" class="btn btn-outline-dark" value="추가" onclick="movepage()">
+          <script type="text/javascript">
+              function movepage(){
+                location.href='/insert';
+              }
+          </script>
     </div>
     
-
-
-
-    <table class="table" border="2">
-        <tr>
-          <th>번호</th>
-          <th>책 제목</th>
-          <th>재고량</th>
-          <th>가격</th>
-        </tr>
-        <%
-        for(var i = 0; i<rows.length; i++)
-        {
-        %>
-        <tr>
-          <td><%=i+1%></td>
-          <td><a href="/book/<%=rows[i].book_id%>"><%=rows[i].book_name%></a></td>
-          <td><%=rows[i].book_quantity%></td>
-          <td><%=rows[i].book_price%></td>
-        </tr>
-        <%
-        }
-        %>
-  
-      </table>
-      
-      <!-- <input type="button" value="추가" onclick="movepage()">
-      <script type="text/javascript">
-          function movepage(){
-            location.href='/insert';
-          }
-      </script> -->
 
 </body>
 </html>

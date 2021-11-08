@@ -10,40 +10,29 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
-  <title>Hello, world!</title>
+  <title>update Book</title>
 </head>
 
 <body class="text-center" style="margin-top: 50px; margin-right: 80px; margin-left: 80px; margin-bottom: 20px;">
-  <div>
-    <body class="text-center" style="margin-top: 50px; margin-right: 80px; margin-left: 80px; margin-bottom: 20px;">
-        <h2><span class="badge bg-secondary" name="book_name">제목</span>
-          <%=rows.book_name%>
-        </h2>
-        <br>
-        <div >
-          <div>
-            <h4><span class="badge bg-secondary" name="book_quantity">재고</span>
-              <%=rows.book_quantity%>
-            </h4>
-          </div>
-          <div >
-            <h4><span class="badge bg-secondary"name="book_price">가격</span>
-              <%=rows.book_price%>
-            </h4>
-          </div>
-        </div>
-        <br>
-        <br>
-    <button type="menu" class="btn btn-outline-dark" onclick="location.href='/main'">목록</button>
-    <button type="menu" class="btn btn-outline-dark" onclick="location.href='/book/update/<%=rows.book_id%>'">수정</button>
-    <button type="submit" class="btn btn-outline-dark" onclick="location.href='/order/<%=rows.book_id%>/<%=session%>'">구매</button>
-    <button type="submit" class="btn btn-outline-dark" onclick="location.href='/cart'">장바구니</button>
-    <form action="/delete/<%=rows.book_id%>" method="post">
-      <button class="btn btn-outline-dark" type="submit">삭제</button>
-    </form>
- 
-  </div>
-
+  <form action="/book/update/<%=rows[0].book_id%>" method="POST">
+    <div class="input-group input-group-lg">
+      <span class="input-group-text" id="inputGroup-sizing-lg" >제목</span>
+      <input type="text" class="form-control" aria-label="Sizing example input" id="book_name" name="book_name" value="<%=rows[0].book_name%>"
+        aria-describedby="inputGroup-sizing-lg" required>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="재고량" id="book_quantity" name="book_quantity" value="<%=rows[0].book_quantity%>" required>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="금액" id="book_price" name="book_price" value="<%=rows[0].book_price%>"required>
+      </div>
+    </div>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-outline-dark">저장</button>
+  </form>
 
 
   <!-- Optional JavaScript; choose one of the two! -->
