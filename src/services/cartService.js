@@ -9,3 +9,11 @@ exports.getCart = async(req,res)=>{
         return res.status(500).json(err);
     }
 }
+exports.getCartInfo = async(req,res)=>{
+    try{
+        const cartInfo = database.query(cartQuery.getCartInfo(req));
+        return cartInfo[0];
+    }catch(err){
+        return res.status(500).json(err);
+    }
+}
