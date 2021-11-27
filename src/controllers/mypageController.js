@@ -4,7 +4,9 @@ exports.getMypage = async(req, res) =>{
     const { user_user_id } = req.params
     try {
         const card = await mypageService.cardInfo(user_user_id);
+        console.log("pass1");
         const address = await mypageService.addressInfo(user_user_id);
+        console.log("pass2");
         return res.render('mypage', {
             card :card,
             address :address,

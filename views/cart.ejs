@@ -14,17 +14,17 @@
         <h1 class="display-5 fw-bold"><%=session%>님의 장바구니</h1>
       </header>
       <h2>장바구니 번호 : <%=cartInfo[0].cart_id%>  생성일자 : <%=cartInfo[0].cart_createdate%></h2>
-      <form action='/order' method="post">
+      <form action='/cart/order/<%=session%>' method="get">
         <div class="col-lg-10 mx-auto">
           <table class="table">
             <thead>
               <tr>
                 <th scope="col">번호</th>
                 <th scope="col">책정보</th>
-                <th scope="col">가격</th>
                 <th scope="col">수량</th>
                 <th scope="col">총액</th>
-                <th scope="col"></th>
+                <!-- <th scope="col">총액</th> -->
+                <!-- <th scope="col"></th> -->
               </tr>
             </thead>
             <tbody>
@@ -35,24 +35,19 @@
               <tr>
                 <td><%=i+1%></td>
                 <td><%=cart[i].book_id%></a></td>
-                <td><%=cart[i].cart_book_quantity%></td>
-                <td><%=cart[i].cart_book_price%></td>
-                <td><form action="/cart/delete/<%=session%>/<%=cart[i].book_id%>" method="post"><button type="submit" class="btn btn-dark ">삭제</button></form></td>
+                <td><%=cart[i].cart_quantity%></td> 
+                <td><%=cart[i].cart_price%></td>
+                <!-- <td><%=cart[i].cart_quantity * cart[i].cart_price%></td> -->
+                <!-- <td><form action="/cart/delete/<%=session%>/<%=cart[i].book_id%>" method="post"><button type="submit" class="btn btn-dark ">삭제</button></form></td> -->
               </tr>
               <%
               }
               %>
-              <!-- <tr>
-                <td>데이터베이스 개론</a></td>
-                <td>25000</td>
-                <td>2</td>
-                <td>50000</td>
-                <td><button type="button" class="btn btn-dark">삭제</button></td>
-              </tr> -->
             </tbody> 
           </table>
+          
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button type="button" class="btn btn-dark btn-lg px-4 gap-3">주문</button>
+            <button type="submit" class="btn btn-dark btn-lg px-4 gap-3" >주문</button>
           </div>
         </div>
       </form>

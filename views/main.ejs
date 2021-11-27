@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <title>Document</title>
+    <title>BookStore</title>
 </head>
 <body class="text-center" style="margin-top: 30px; margin-left: 50px; margin-right: 50px;" >
     <div class="px-4 py-5 my-5 text-center">
@@ -48,6 +48,8 @@
                       <th scope="col">책 제목</th>
                       <th scope="col">재고량</th>
                       <th scope="col">가격</th>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
                     </tr>
                     <%
                     for(var i = 0; i<rows.length; i++)
@@ -58,6 +60,12 @@
                       <td><a href="/book/<%=rows[i].book_id%>"><%=rows[i].book_name%></a></td>
                       <td><%=rows[i].book_quantity%></td>
                       <td><%=rows[i].book_price%></td>
+                      <td> <button type="menu" class="btn btn-outline-dark" onclick="location.href='/book/update/<%=rows[i].book_id%>'">수정</button></td>
+                      <td>    
+                        <form action="/delete/<%=rows[i].book_id%>" method="post">
+                        <button class="btn btn-outline-dark" type="submit">삭제</button>
+                      </form>
+                    </td>
                     </tr>
                     <%
                     }
