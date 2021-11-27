@@ -10,47 +10,58 @@
 </head>
 <body class="text-center" style="margin-top: 50px; margin-right: 80px; margin-left: 80px; margin-bottom: 20px;">
 
-  <form action='/orderList/<%=rows.book_id%>/<%=session%>' method='post'>
+  <form action='/order/orderList' method='post'>
+    <header>
+      <h1 class="display-5 fw-bold"><%=session%>님의 주문</h1>
+  </header>
     <div>
-      <h2><span class="badge bg-secondary" name="book_name">제목</span>
-          <%=rows.book_name%>
-        </h2>
-        <br>
-        <div >
-          <div>
-            <h4><span class="badge bg-secondary" name="book_quantity">재고</span>
-              <%=rows.book_quantity%>
-            </h4>
-          </div>
-          <div >
-            <h4><span class="badge bg-secondary"name="book_price">가격</span>
-              <%=rows.book_price%>
-            </h4>
-          </div>
-        </div>
-        <br>
-        <form>
-          <input type=num name=amount value=1 min="0">
-          <input type=button value="up" onClick="javascript:this.form.amount.value++;">
-          <input type=button value="down" onClick="javascript:this.form.amount.value--;">
-          </form>
-        <br>
-        <select name="card">
+        <table class="table">
+            
+<% let order_amount = 0 %>
+          <thead>
+            <tr>
+              <th scope="col">번호</th>
+              <th scope="col">책정보</th>
+              <th scope="col">수량</th>
+              <th scope="col">가격</th>
+            </tr>
+          </thead>
+          <tbody>       
+            <% for(let book of book_info){%>
+              <tr>
+                <td><input type="text" name="books_id" onfocus="javascript:blur();" style="border: none; background: transparent;" value="<%= book.book_id %>" /></td>
+                <td><input type="text" name="books_name" onfocus="javascript:blur();" style="border:none; background: transparent;" value="<%=book.book_name%>"></a></td>
+                <td><input type=number name="count" value=1 min="0" max="<%=book.book_quantity%>" onchange='printCnt()'></td>  
+                <td><input type"text" name="book_price"onfocus="javascript:blur();" style="border: none; background: transparent;" value="<%=book.book_price%>"></td>        
+                <script type="text/javascript">
+                  function printCnt()  {
+                      let cnt = document.getElementById('cnt').value;
+                      let price = document.getElementById('price').value;
+                      document.getElementById("result").innerText = cnt*price;
+                  }
+              </script>
+              <% order_amount += book.book_price %>
+              </tr>
+           <%}%>   
+            
+          </tbody>
+        </table>
+        <select name="card_id">
           <%
-          for(var i = 0; i<card.length; i++)
+          for(var i = 0; i<card_info.length; i++)
           {
           %>
-            <option value="selectCard"><%=card[i].card_kind%>/<%=card[i].card_id%></option>
+            <option value="<%=card_info[i].card_id%>"><%=card_info[i].card_kind%>/<%=card_info[i].card_id%></option>
           <%
           }
           %>
         </select>
-        <select name="address">
+        <select name="address_id">
           <%
-          for(var i = 0; i<address.length; i++)
+          for(var i = 0; i<address_info.length; i++)
           {
           %>
-            <option value="selectAddress"><%=address[i].address_default%>/<%=address[i].address_detail%></option>
+            <option value="<%=address_info[i].address_id%>"><%=address_info[i].address_default%>/<%=address_info[i].address_detail%></option>
           <%
           }
           %>

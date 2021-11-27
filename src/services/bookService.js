@@ -46,3 +46,12 @@ exports.bookUpdate = async(req) => {
         throw Error(err);
     }
 }
+
+exports.getBookName = async(req) => {
+    try{
+        const name = await database.query(bookQuery.getBookName, req);
+        return name[0];
+    }catch(err){
+        throw Error(err);
+    }
+}

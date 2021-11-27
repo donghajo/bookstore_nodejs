@@ -72,3 +72,21 @@ exports.updateAddress = async(req)=>{
         throw Error(err);
     }
 }
+
+exports.cardDetail = async(req)=>{
+    try{
+        let detail = await database.query(mypageQuery.cardDetail, req);
+        return detail[0]
+    }catch(err){
+        throw Error(err);
+    }
+}
+
+exports.addressDetail = async(req)=>{
+    try{
+        let detail = await database.query(mypageQuery.addressDetail, req);
+        return detail[0]
+    }catch(err){
+        throw Error(err);
+    }
+}

@@ -20,25 +20,22 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">순번</th>
-                <th scope="col">책 정보</th>
-                <th scope="col">주문일자</th>
                 <th scope="col">주문번호</th>
+                <th scope="col">주문일자</th>
                 <th scope="col">주문금액</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-
+            </tbody>
+            <% for(let order of order info){%>
               <tr>
-                <td>1</td>
-                <td>데이터베이스 개론</a></td>
-                <td>21-11-08</td>
-                <td>1</td>
-                <td>25000</td>
+                <td><%=order.order_id%></td>
+                <td><%=order.order_date%></td>
+                <td><%=order.order_amount%></td>
                 <td><button type="button" class="btn btn-dark">주문취소</button></td>
               </tr>
-
+              <%}%>
             </tbody> 
           </table>
         </div>

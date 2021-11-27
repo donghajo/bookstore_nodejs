@@ -32,12 +32,19 @@ exports.getSignUp = async(req, res) =>{
     return res.render('signUp')
 }
 exports.signUp = async(req, res) =>{
-    const {user_id, user_pw, user_name} = req.body
+    const {user_id, user_pw, user_name, recommender_id} = req.body;
+
     try{
-        signService.signUp([user_id, user_pw, user_name])
+        if(recommender_id != null){
+            signService.recommendSignup([user_id, user_pw, user_name,recommender_id])
+            signService.sendPoint([recommender_id]);
+        }else{
+            signService.signUp([user_id, user_pw, user_name])
+        }
         return res.redirect('/signIn')
     }catch(err){
         res.send('<script type="text/javascript">alert("이미 사용중인 아이디 입니다."); document.location.href="/signUp";</script>')
         return res.status(500).json(err)
     }
 }
+
