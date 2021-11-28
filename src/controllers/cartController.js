@@ -8,7 +8,9 @@ exports.getCart = async(req, res) =>{
     const cart_id = await cartService.getCartId([user_user_id]);;
     try{
         const cart = await cartService.getCart([cart_id[0].cart_id]);
-        const cartInfo = await cartService.getCartInfo([cart_id[0].cart_id, user_user_id]);
+        console.log("pass", cart);
+        const cartInfo = await cartService.cartInformation([cart_id[0].cart_id, user_user_id]);
+        console.log("pass");
         // const bookInfo = await bookService.getDetail([cart[0].book_id]);
         return res.render('cart',{
             cartInfo:cartInfo,
@@ -28,34 +30,38 @@ exports.insertCart = async(req, res) =>{
     try{
         const checkCart = await cartService.checkCart([user_user_id]);
         if(!checkCart){
+            // const cart_id = Math.random()*100000000000000000;
             cartService.createCart([user_user_id, date]);
+            const cartId = await cartService.getCartId([user_user_id]);
+            await cartService.insertCart([cartId[0].cart_id, book_id, quantity, book_price]);
+            res.redirect('/main');
+        }else{
+            const cartId = await cartService.getCartId([user_user_id]);
+            await cartService.insertCart([cartId[0].cart_id, book_id, quantity, book_price]);
+            res.redirect('/main');
         }
-        const cartId = await cartService.getCartId([user_user_id]);
-        cartService.insertCart([cartId[0].cart_id, book_id, quantity, book_price]);
-        res.redirect('/main');
+        
+        
     }catch(err){
         return res.status(500).json(err);
     }
 }
 
-exports.getOrderCart = async(req, res) =>{
-    const {user_user_id} = req.params;
-    const cart_id = await cartService.getCartId([user_user_id]);
-    const amount = 0;
+exports.getOrderCartPage = async(req, res) =>{
+    const user_user_id = req.session.user_id;
     try{
-        const cart = await cartService.getCart([cart_id[0].cart_id]);
-        const cartInfo = await cartService.getCartInfo([cart_id[0].cart_id, user_user_id]);
-        const card = await mypageService.cardInfo([user_user_id]);
-        const address = await mypageService.addressInfo([user_user_id]);
+        const cart_id = await cartService.getCartId([user_user_id]);
+        const book_info = await cartService.getCartInfo([cart_id[0].cart_id]);
+        const card_info = await mypageService.cardInfo([user_user_id]);
+        const address_info = await mypageService.addressInfo([user_user_id]);
         return res.render('orderCart',{
-            cartInfo:cartInfo,
-            cart:cart,
-            card:card,
-            address:address,
-            amount:amount,
+            book_info:book_info,
+            card_info:card_info,
+            address_info:address_info,
             session:user_user_id
         });
     }catch(err){
+        console.log(err);
         return res.status(500).json(err);
     }
 }

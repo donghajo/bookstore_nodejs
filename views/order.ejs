@@ -10,7 +10,7 @@
 </head>
 <body class="text-center" style="margin-top: 50px; margin-right: 80px; margin-left: 80px; margin-bottom: 20px;">
 
-  <form action='/order/orderList' method='post'>
+  <form action='/order/orderList/<%=session%>' method='post'>
     <header>
       <h1 class="display-5 fw-bold"><%=session%>님의 주문</h1>
   </header>
@@ -29,9 +29,9 @@
           <tbody>       
             <% for(let book of book_info){%>
               <tr>
-                <td><input type="text" name="books_id" onfocus="javascript:blur();" style="border: none; background: transparent;" value="<%= book.book_id %>" /></td>
-                <td><input type="text" name="books_name" onfocus="javascript:blur();" style="border:none; background: transparent;" value="<%=book.book_name%>"></a></td>
-                <td><input type=number name="count" value=1 min="0" max="<%=book.book_quantity%>" onchange='printCnt()'></td>  
+                <td><input type="text" name="book_id" onfocus="javascript:blur();" style="border: none; background: transparent;" value="<%= book.book_id %>" /></td>
+                <td><input type="text" name="book_name" onfocus="javascript:blur();" style="border:none; background: transparent;" value="<%=book.book_name%>"></a></td>
+                <td><input type=number name="book_count" value=1 min="0" max="<%=book.book_quantity%>" onchange='printCnt()'></td>  
                 <td><input type"text" name="book_price"onfocus="javascript:blur();" style="border: none; background: transparent;" value="<%=book.book_price%>"></td>        
                 <script type="text/javascript">
                   function printCnt()  {

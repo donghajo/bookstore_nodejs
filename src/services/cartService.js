@@ -9,7 +9,7 @@ exports.getCart = async(req,res)=>{
         return res.status(500).json(err);
     }
 }
-exports.getCartInfo = async(req,res)=>{
+exports.getCartInfo = async(req)=>{
     try{
         const cartInfo = await database.query(cartQuery.getCartInfo, req);
         return cartInfo[0];
@@ -19,22 +19,22 @@ exports.getCartInfo = async(req,res)=>{
 }
 
 
-exports.insertCart = async(req,res)=>{
+exports.insertCart = async(req)=>{
     try{
         database.query(cartQuery.insertCart, req);
     }catch(err){
         throw Error(err);
     }
 }
-exports.checkCart = async(req,res)=>{
+exports.checkCart = async(req)=>{
     try{
         const checkCart = database.query(cartQuery.checkCart, req);
-        return checkCart;
+        return checkCart[0];
     }catch(err){
         throw Error(err);
     }
 }
-exports.createCart = async(req, res)=>{
+exports.createCart = async(req)=>{
     try{
         database.query(cartQuery.createCart, [req]);
         return;
@@ -42,11 +42,18 @@ exports.createCart = async(req, res)=>{
         throw Error(err);
     }
 }
-exports.getCartId = async(req, res) =>{
+exports.getCartId = async(req) =>{
     try{
         const cart = await database.query(cartQuery.checkCart, req);
-        console.log("bye : ", cart[0]);
         return cart[0];
+    }catch(err){
+        throw Error(err);
+    }
+}
+exports.cartInformation = async(req)=>{
+    try{
+        const cartInfo = await database.query(cartQuery.cartInformation, req);
+        return cartInfo[0];
     }catch(err){
         throw Error(err);
     }

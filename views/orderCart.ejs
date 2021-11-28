@@ -6,73 +6,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <title>Cart</title>
+    <title>Order</title>
 </head>
-<body class="text-center" style="margin-top: 30px; margin-left: 50px; margin-right: 50px;">
-    <div class="px-4 py-5 my-5 text-center">
-      <header>
-        <h1 class="display-5 fw-bold"><%=session%>님의 주문</h1>
-      </header>
-      <br>
-      <form action='/orderList/<%=session%>' method="post">
-        <div class="col-lg-10 mx-auto">
-          <table class="table">
-            
-            <thead>
-              <tr>
-                <th scope="col">번호</th>
-                <th scope="col">책정보</th>
-                <th scope="col">가격</th>
-                <th scope="col">수량</th>
-                <th scope="col">총액</th>
-                <!-- <th scope="col"></th> -->
-              </tr>
-            </thead>
-            <tbody>
-              <%
-              for(var i = 0; i<cart.length; i++)
-              {
-              %>
-              <tr>
-                <td><%=i+1%></td>
-                <td><%=cart[i].book_id%></a></td>
-                <td><%=cart[i].cart_book_price%></td>
-                <td><%=cart[i].cart_book_quantity%></td>          
-                <td><%=cart[i].cart_book_quantity * cart[i].cart_book_price%></td>
-                <!-- <td><form action="/cart/delete/<%=session%>/<%=cart[i].book_id%>" method="post"><button type="submit" class="btn btn-dark ">삭제</button></form></td> -->
-              </tr>
-              <%
-              }
-              %>
-            </tbody>
-          </table>
-          <br>
-          <select name="card">
-            <%
-            for(var i = 0; i<card.length; i++)
-            {
-            %>
-              <option value="selectCard"><%=card[i].card_kind%>/<%=card[i].card_id%></option>
-            <%
-            }
-            %>
-          </select>
-            <select name="address">
-            <%
-            for(var i = 0; i<address.length; i++)
-            {
-            %>
-              <option value="selectAddress"><%=address[i].address_default%>/<%=address[i].address_detail%></option>
-            <%
-            }
-            %>
-          </select>
+<body class="text-center" style="margin-top: 50px; margin-right: 80px; margin-left: 80px; margin-bottom: 20px;">
 
-          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button type="button" class="btn btn-dark btn-lg px-4 gap-3">주문</button>
-          </div>
-        </div>
-      </form>
+  <form action='/order/orderList/<%=session%>' method='post'>
+    <header>
+      <h1 class="display-5 fw-bold"><%=session%>님의 주문</h1>
+  </header>
+    <div>
+        <table class="table">
+            
+<% let order_amount = 0 %>
+          <thead>
+            <tr>
+              <th scope="col">번호</th>
+              <th scope="col">책정보</th>
+              <th scope="col">수량</th>
+              <th scope="col">가격</th>
+            </tr>
+          </thead>
+          <tbody>       
+            <% for(let book of book_info){%>
+              <tr>
+                <td><input type="text" name="book_id" onfocus="javascript:blur();" style="border: none; background: transparent;" value="<%= book.book_id %>" /></td>
+                <td><input type="text" name="book_name" onfocus="javascript:blur();" style="border:none; background: transparent;" value="<%=book.book_name%>"></a></td>
+                <td><input type=number name="book_count" value=1 min="0" max="<%=book.book_quantity%>" onchange='printCnt()'></td>  
+                <td><input type"text" name="book_price"onfocus="javascript:blur();" style="border: none; background: transparent;" value="<%=book.book_price%>"></td>        
+                <script type="text/javascript">
+                  function printCnt()  {
+                      let cnt = document.getElementById('cnt').value;
+                      let price = document.getElementById('price').value;
+                      document.getElementById("result").innerText = cnt*price;
+                  }
+              </script>
+              <% order_amount += book.book_price %>
+              </tr>
+           <%}%>   
+            
+          </tbody>
+        </table>
+        <select name="card_id">
+          <%
+          for(var i = 0; i<card_info.length; i++)
+          {
+          %>
+            <option value="<%=card_info[i].card_id%>"><%=card_info[i].card_kind%>/<%=card_info[i].card_id%></option>
+          <%
+          }
+          %>
+        </select>
+        <select name="address_id">
+          <%
+          for(var i = 0; i<address_info.length; i++)
+          {
+          %>
+            <option value="<%=address_info[i].address_id%>"><%=address_info[i].address_default%>/<%=address_info[i].address_detail%></option>
+          <%
+          }
+          %>
+        </select>
+        <br>
+        <br>
+      <div>
+        <button type="submit" class="btn btn-outline-dark">구매</button>
+      </div>
+  </form>
+    
+      
+      
+      
+        <!-- Optional JavaScript; choose one of the two! -->
+      
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+          crossorigin="anonymous"></script>
+      
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+          -->
     </div>
+
 </body>
 </html>
