@@ -113,10 +113,16 @@ exports.deleteOrder = async(req, res) =>{
     console.log("session : ", session);
     console.log("order_id : ", order_id);
     try{
-        await orderService.deleteOrder([session, order_id]);
-        await orderService.deleteOrderList([order_id]);
-        const order_info = await orderService.selectOrder([order_id]);
-        await orderService.plusBookCount([order_info[0].book_count, order_info[0].book_id]);
+        const list_info = await orderService.getList(order_id);
+        for(let i = 0; i<list_info.length; i++){
+            let count = list_info[i].order_quantity;
+            let book_id = list_info[i].book_id;
+            await orderService.plusBookCount([count, book_id]);
+            await orderService.deleteOrderList([order_id, book_id]);
+        }
+        await orderService.deleteOrder([order_id]);
+
+        
         return res.redirect('/order/orderList/'+session);
     }catch(err){
         console.log(err);

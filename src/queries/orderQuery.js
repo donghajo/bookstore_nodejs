@@ -11,5 +11,5 @@ exports.selectList = 'select * from orders where order_id = ?';
 
 
 //delete
-exports.deleteOrder = 'delete from orders where order_id = ? and user_user_id = ?';
-exports.deleteOrderList = 'delete from order_detail where order_id = ?';
+exports.deleteOrder = 'delete from orders where order_id = ?';
+exports.deleteOrderList = 'delete from order_detail where order_id = ? and book_id';
