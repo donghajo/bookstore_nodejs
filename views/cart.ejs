@@ -23,6 +23,7 @@
                 <th scope="col">책정보</th>
                 <th scope="col">수량</th>
                 <th scope="col">총액</th>
+                <th scope="col"></th>
                 <!-- <th scope="col">총액</th> -->
                 <!-- <th scope="col"></th> -->
               </tr>
@@ -37,6 +38,7 @@
                 <td><%=cart[i].book_id%></a></td>
                 <td><%=cart[i].cart_quantity%></td> 
                 <td><%=cart[i].cart_price%></td>
+                <td><button type="button" class="btn btn-dark" onclick="location.href='/cart/delete/<%=cartInfo[0].cart_id%>/<%=cart[i].book_id%>'">삭제</button></td>
                 <!-- <td><%=cart[i].cart_quantity * cart[i].cart_price%></td> -->
                 <!-- <td><form action="/cart/delete/<%=session%>/<%=cart[i].book_id%>" method="post"><button type="submit" class="btn btn-dark ">삭제</button></form></td> -->
               </tr>

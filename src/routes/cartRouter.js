@@ -6,5 +6,9 @@ router.post('/insert/:book_id/:book_price/:user_user_id', cartController.insertC
 router.get('/cart/order/:cart_id', cartController.getOrderCartPage);
 
 
+//delete item 1
+router.get('/cart/delete/:cart_id/:book_id', cartController.deleteLine);
+
+
 
 module.exports=router;

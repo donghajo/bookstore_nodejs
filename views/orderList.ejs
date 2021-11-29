@@ -30,7 +30,7 @@
             </tbody>
             <% for(let order of order_info){%>
               <tr>
-                <td><%=order.order_id%></td>
+                <td><a href="/orderDetail/<%=order.order_id%>"><%=order.order_id%></a></td>
                 <td><%=order.order_date%></td>
                 <td><%=order.order_price%></td>
                 <td><button type="submit" class="btn btn-dark" onclick="location.href='/order/delete/<%=order.order_id%>'">주문취소</button></td>

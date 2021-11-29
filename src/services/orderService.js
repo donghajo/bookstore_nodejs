@@ -2,16 +2,8 @@ const orderQuery = require('../queries/orderQuery');
 const database = require('../../database/database');
 
 
-exports.orderPage = async(req,res) =>{
-    try{
-
-    }catch(err){
-        return res.status(500).json(err);
-    }
-}
 exports.orderItem = async(req) =>{
     try{
-        console.log(req);
         await database.query(orderQuery.orderItem, req);
         return;
     }catch(err){
@@ -30,6 +22,14 @@ exports.selectOrder = async(req)=>{
     }
 }
 
+exports.selectList = async(req)=>{
+    try{
+        const selectList = await database.query(orderQuery.selectList, req) ;
+        return selectList[0];
+    }catch(err){
+        throw Error(err);
+    }
+}
 exports.addOrderList = async(req) => {
     try{
         const addOrderList = await database.query(orderQuery.addOrderList, req);
@@ -62,7 +62,6 @@ exports.getOrderList = async (req, res) => {
 
 exports.getList = async(req) =>{
     try{
-        console.log(req);
         let list = await database.query(orderQuery.getList, req);
         return list[0];
     }catch(err){

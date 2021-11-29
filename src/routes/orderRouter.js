@@ -5,7 +5,7 @@ router.get('/order/:book_id', orderController.orderPage);
 router.post('/order/orderList/:user_user_id', orderController.order);
 
 router.get('/order/orderList/:user_user_id', orderController.getOrderList);
-router.get('/orderDetail/:user_id', orderController.getOrderDetail);
+router.get('/orderDetail/:order_id', orderController.getOrderDetail);
 
 router.post('/order/delete/:order_id', orderController.deleteOrder);
 

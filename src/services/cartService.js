@@ -1,5 +1,6 @@
 const cartQuery = require('../queries/cartQuery');
 const database = require('../../database/database');
+const { data } = require('jquery');
 
 exports.getCart = async(req,res)=>{
     try{
@@ -29,7 +30,7 @@ exports.insertCart = async(req)=>{
 exports.checkCart = async(req)=>{
     try{
         const checkCart = database.query(cartQuery.checkCart, req);
-        return checkCart[0];
+        return checkCart;
     }catch(err){
         throw Error(err);
     }
@@ -54,6 +55,31 @@ exports.cartInformation = async(req)=>{
     try{
         const cartInfo = await database.query(cartQuery.cartInformation, req);
         return cartInfo[0];
+    }catch(err){
+        throw Error(err);
+    }
+}
+
+exports.deleteLine = async(req) => {
+    try{
+        await database.query(cartQuery.deleteLine, req);
+    }catch(err){
+        throw Error(err);
+    }
+}
+
+
+exports.deleteLineAll = async(req) => {
+    try{
+        await database.query(cartQuery.deleteLineAll, req);
+    }catch(err){
+        throw Error(err);
+    }
+}
+
+exports.deleteCart = async(req) => {
+    try{
+        await database.query(cartQuery.deleteCart, req);
     }catch(err){
         throw Error(err);
     }
