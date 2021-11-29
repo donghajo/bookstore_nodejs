@@ -76,3 +76,11 @@ exports.bookUpdate = async(req, res) =>{
     }
 
 }
+
+exports.getReviewPage = async(req, res) => {
+    try{
+        return res.render('review');
+    }catch(err){
+        return res.status(500).json(err);
+    }
+}

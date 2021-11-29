@@ -18,4 +18,8 @@ router.post('/delete/:book_id', bookController.bookDelete);
 router.get('/book/update/:book_id', bookController.getUpdate);
 router.post('/book/update/:book_id', bookController.bookUpdate);
 
+
+//rating
+router.get('/book/review/:book_id', bookController.getReviewPage);
+
 module.exports = router;
