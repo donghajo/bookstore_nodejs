@@ -62,6 +62,7 @@ exports.cartInformation = async(req)=>{
 
 exports.deleteLine = async(req) => {
     try{
+        console.log(req);
         await database.query(cartQuery.deleteLine, req);
     }catch(err){
         throw Error(err);

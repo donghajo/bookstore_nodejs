@@ -79,7 +79,6 @@ exports.getOrderCartPage = async(req, res) =>{
 exports.deleteLine = async(req, res) => {
     const session = req.session.user_id;
     try{
-    
         console.log(req.params);
         const {cart_id,book_id} = req.params;
         await cartService.deleteLine([cart_id, book_id]);

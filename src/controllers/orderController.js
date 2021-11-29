@@ -28,10 +28,8 @@ exports.order = async(req, res) => {
         const order_id = String(Math.random()*100000000000000000);
         let order_date = new Date();
         let order_amount = 0;
-
         console.log("주문 책 수 : ",book_id.length);
-        console.log(book_price, book_count);
-        const cart_id = cartService.getCartId([user]);
+        const cartId = await cartService.getCartId([user]);
         if(book_id.length > 1){
             for(let i = 0; i < book_id.length; i++){
                 let price = book_price[i];
@@ -56,9 +54,13 @@ exports.order = async(req, res) => {
         for(let i = 0; i < book_id.length; i++){
             await orderService.addOrderList([order_id, book_id[i], book_count[i], book_price[i]]);
             await orderService.minusBookCount([book_count[i], book_id[i]]);
-            // await cartService.deleteLine([cart_id, book_id[i]]);
+            if(book_id.length>1){
+                await cartService.deleteLine([cartId[0].cart_id, parseInt(book_id[i])]);
+            }
         }
-        // await cartService.deleteCart([cart_id]);
+        if(book_id.length>1){
+            await cartService.deleteCart([cartId[0].cart_id]);
+        }
         return res.send(`<script type="text/javascript">
         alert("주문이 완료되었습니다."); 
         location.href='./orderList';
@@ -105,7 +107,7 @@ exports.getOrderDetail = async(req, res) =>{
     }
 }
 
-exports.deleteOrder = async(req) =>{
+exports.deleteOrder = async(req, res) =>{
     const session = req.session.user_id;
     const order_id = req.params.order_id;
     console.log("session : ", session);
@@ -117,6 +119,7 @@ exports.deleteOrder = async(req) =>{
         await orderService.plusBookCount([order_info[0].book_count, order_info[0].book_id]);
         return res.redirect('/order/orderList/'+session);
     }catch(err){
+        console.log(err);
         return res.status(500).json(err);
     }
 }

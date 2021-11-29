@@ -7,6 +7,6 @@ router.post('/order/orderList/:user_user_id', orderController.order);
 router.get('/order/orderList/:user_user_id', orderController.getOrderList);
 router.get('/orderDetail/:order_id', orderController.getOrderDetail);
 
-router.post('/order/delete/:order_id', orderController.deleteOrder);
+router.get('/order/delete/:order_id', orderController.deleteOrder);
 
 module.exports = router;

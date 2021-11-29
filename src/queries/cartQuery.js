@@ -8,7 +8,7 @@ exports.createCart = 'insert into cart (cart_id, user_user_id, cart_createdate) 
 exports.getCartId = 'select cart_id from cart where user_user_id=?';
 
 //delete one
-exports.deleteLine = 'delete from cart_detail where cart_id = ? and book_id = ?';
+exports.deleteLine = 'delete from cart_detail where cart_id=? and book_id=?';
 
 
 //delete cart
