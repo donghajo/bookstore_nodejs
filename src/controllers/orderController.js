@@ -22,8 +22,9 @@ exports.orderPage = async(req, res) => {
 }
 
 exports.order = async(req, res) => {
-   const {book_price, card_id, address_id, book_id, book_count} = req.body;
+   const {book_price, card_id, address_id, book_id, book_count, use_point} = req.body;
    try{
+       console.log(use_point);
         const user = req.session.user_id;
         const order_id = String(Math.random()*100000000000000000);
         let order_date = new Date();
@@ -37,11 +38,19 @@ exports.order = async(req, res) => {
                 order_amount += price*count;
             }
         }else{
-            order_amount = book_price * book_count;
+            order_amount = book_price * book_count
         }
-
+        order_amount = order_amount - use_point;
+        let accum = await orderService.getAccum([book_id]);
+  
+        let point = order_amount * accum[0].accum / 100;
+        await orderService.getPoint([point, user])
+        await orderService.setPoint([use_point, user]);
+        console.log(point);
         let card_info = await mypageService.cardDetail([card_id]);
         let addr_info = await mypageService.addressDetail([address_id]);
+
+
 
         let card = card_info[0]
         let addr = addr_info[0]
@@ -50,7 +59,7 @@ exports.order = async(req, res) => {
         let address_zipcode = addr.zipCode
         let address_default = addr.address_default
         let address_detail = addr.address_detail
-        await orderService.orderItem([order_id, order_date, order_amount, card_id, card_kind, card_exp, address_zipcode, address_default, address_detail, user]);
+        await orderService.orderItem([order_id, order_date, order_amount, card_id, card_kind, card_exp, address_zipcode, address_default, address_detail, use_point, user]);
         for(let i = 0; i < book_id.length; i++){
             await orderService.addOrderList([order_id, book_id[i], book_count[i], book_price[i]]);
             await orderService.minusBookCount([book_count[i], book_id[i]]);
@@ -61,6 +70,7 @@ exports.order = async(req, res) => {
         if(book_id.length>1){
             await cartService.deleteCart([cartId[0].cart_id]);
         }
+        
         return res.send(`<script type="text/javascript">
         alert("주문이 완료되었습니다."); 
         location.href='./orderList';

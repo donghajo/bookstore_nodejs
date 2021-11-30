@@ -45,6 +45,7 @@
             <th scope="col">주문번호</th>
             <th scope="col">주문일자</th>
             <th scope="col">총액</th>
+            <th scope="col">할인총액</th>
           </tr>
         </thead>
         <tbody>       
@@ -52,6 +53,7 @@
               <td><%=order_info[0].order_id%></td>
               <td><%=order_info[0].order_date%></td>
               <td><%=order_info[0].order_price%></td>
+              <td><%=order_info[0].amount%></td>
             </tr>
         </tbody>
       </table>

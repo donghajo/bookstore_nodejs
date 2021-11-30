@@ -103,3 +103,32 @@ exports.plusBookCount = async (req) => {
     }
 
 }
+
+
+exports.getPoint = async(req) => {
+    try{    
+        console.log(req);
+        await database.query(orderQuery.getPoint, req);
+    }catch(err){
+        throw Error(err)
+    }
+}
+
+exports.setPoint = async(req) => {
+    try{    
+        console.log(req);
+        await database.query(orderQuery.setPoint, req);
+    }catch(err){
+        throw Error(err)
+    }
+}
+
+exports.getAccum = async(req, res) => {
+    try{    
+        console.log(req);
+        const accum =await database.query(orderQuery.getAccum, req);
+        return accum[0];
+    }catch(err){
+        throw Error(err)
+    }
+}
