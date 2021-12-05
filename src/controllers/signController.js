@@ -23,7 +23,7 @@ exports.signOut = async(req, res) =>{
         });
     }else{
         console.log('로그인 X');
-        res.redirect('/signin');
+        res.redirect('/signIn');
     }
 }
 
