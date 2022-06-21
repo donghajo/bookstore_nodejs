@@ -1,11 +1,12 @@
 const mysql = require('mysql2/promise');
+const dbConfig = require('../src/config/db.config');
 
 const connection = mysql.createPool({
-    host : 'localhost',
-    port : 3306,
-    user : 'root',
-    password : '980605',
-    database : 'db_bookstore'
+    host: dbConfig.host,
+    port: dbConfig.port,
+    user: dbConfig.user,
+    password: dbConfig.password,
+    database: dbConfig.database
 });
 
 module.exports = connection;
