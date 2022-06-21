@@ -10,6 +10,5 @@ exports.insertAddress = 'insert into address(zipCode, address_default, address_d
 exports.deleteAddress = 'delete from address where zipCode=? and user_user_id=? ';
 exports.updateAddress = 'update address set zipCode=?, address_default=?, address_detail=? where user_id=?'
 
-
 exports.cardDetail = 'select * from creditCard where card_id = ?';
 exports.addressDetail = 'select * from address where address_id = ? '

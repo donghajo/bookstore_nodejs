@@ -10,7 +10,6 @@ exports.getCartId = 'select cart_id from cart where user_id=?';
 //delete one
 exports.deleteLine = 'delete from cart_detail where cart_id=? and book_id=?';
 
-
 //delete cart
 exports.deleteLineAll = 'delete from cart_detal where cart_id = ?';
 exports.deleteCart = 'delete from cart where cart_id = ?';
